@@ -51,6 +51,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUserById(
             @Parameter(description = "User ID", required = true) @PathVariable Long id) {
+
         return userService.getUserById(id)
                 .map(user -> new UserResponse(
                         user.getUserId(),
