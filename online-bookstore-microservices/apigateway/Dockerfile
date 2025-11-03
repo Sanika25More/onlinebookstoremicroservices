@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy JAR file from target folder
 COPY target/*.jar app.jar
 
-# Expose API Gateway port (change if your gateway runs on another port)
-EXPOSE 8080
+# Expose API Gateway port
+EXPOSE 8765
 
 # Run the Spring Boot JAR
 ENTRYPOINT ["java", "-jar", "app.jar"]

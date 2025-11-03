@@ -16,7 +16,7 @@ spec:
         - name: api-gateway
           image: sani427/api-gateway:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8765
           env:
             - name: CONFIG_SERVER_URI
               value: "http://config-server:8888"

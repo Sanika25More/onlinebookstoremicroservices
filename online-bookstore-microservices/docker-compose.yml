@@ -23,8 +23,31 @@ services:
       - SPRING_CLOUD_CONFIG_URI=http://config-server:8889
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
       - SPRING_PROFILES_ACTIVE=dev
+  # 3. API Gateway (listens on 8765)
+  apigateway:
+    build: ./apigateway
+    container_name: apigateway
+    ports:
+      - "8765:8765"
+    depends_on:
+      config-server:
+        condition: service_started
+      eureka-server:
+        condition: service_started
+      book-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+      order-service:
+        condition: service_started
+      payment-service:
+        condition: service_started
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8889
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
-  # --- DATABASE SERVICE ---
+
+  # --- DATABAERVICE ---
   mysql:
     image: mysql:8.0
     container_name: mysql
